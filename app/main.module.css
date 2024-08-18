@@ -1,0 +1,79 @@
+/* ----------------------------------------------------- */
+.checkmark {
+  font-size: 50px;
+  pointer-events: none;
+  transition: transform 0.3s ease-in-out;
+}
+
+.celebrate {
+  animation: celebrateAnimation 1s ease-in-out;
+}
+
+@keyframes celebrateAnimation {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* ----------------------------------------------------- */
+
+.ctaButton {
+  animation: pulse 1.5s infinite ease-in-out; /* Apply the pulse animation */
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1); /* Initial scale */
+  }
+  50% {
+    transform: scale(1.015); /* Slightly larger scale */
+  }
+  100% {
+    transform: scale(1); /* Back to original scale */
+  }
+}
+
+/* --------------------------------------------------------- */
+
+.loadingAnimation {
+  display: inline-flex;
+  align-items: center; /* Center dots vertically */
+  width: auto; /* Adjust width automatically based on content */
+}
+
+.dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: gray; /* Dot color */
+  opacity: 0.65;
+  border-radius: 50%; /* Make it round */
+  margin: 0 3px; /* Add space between dots */
+  animation: bounce 1s infinite; /* Apply bounce animation */
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.1s; /* Delay for second dot */
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.2s; /* Delay for third dot */
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0); /* Start and end position */
+  }
+  50% {
+    transform: translateY(-8px); /* Move up */
+  }
+}
+
+/* -------------------- */

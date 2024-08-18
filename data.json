@@ -1,0 +1,43 @@
+{
+  "challenges": [
+    {
+      "title": "Introduce yourself",
+      "description": "Your name, age, hobbies, anything that describes you!",
+      "tips": [
+        "My name is [...]",
+        "I am [...] years old.",
+        "In my free time, I enjoy [...]",
+        "Something I want to try is [...]"
+      ]
+    },
+    {
+      "title": "Holiday memory",
+      "description": "Write about a holiday that comes to mind",
+      "tips": [
+        "My favorite holiday was [...]",
+        "I enjoyed this holiday because [...]",
+        "I spent this holiday with [...]"
+      ]
+    },
+    {
+      "title": "Pitch a startup",
+      "description": "Pitch a startup idea. Let the imagination flow!",
+      "tips": [
+        "My startup idea is [...]",
+        "Our target market is [...]",
+        "Our business model involves [...]",
+        "The technology behind our startup is [...]"
+      ]
+    },
+    {
+      "title": "Favorite film",
+      "description": "Write about your favorite film.",
+      "tips": [
+        "My favorite film is [...]",
+        "The reason I love this film is [...]",
+        "One quote from the film is [...]"
+      ]
+    }
+  ],
+  "languages": ["German 🇩🇪", "Spanish 🇪🇸", "French 🇫🇷", "Swedish 🇸🇪"]
+}
