@@ -11,7 +11,7 @@ export default function HomePage() {
         Exercises for{" "}
         <span className=" text-main ">intermediate language learners</span>
       </h2>
-      {/* test    jklsjfdklö dsjfdklsöj sfdaklö
+      {/* test    jklsjfdklö dsjfdklsöj sfdaklö fdsfsdfds
        */}
 
       <LanguageSelect />
