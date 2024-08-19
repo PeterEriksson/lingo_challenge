@@ -11,14 +11,14 @@ type Props = {
 };
 async function ChallengePage({ params }: Props) {
   const session = await getServerSession(authOptions);
-  //console.log(session);
   return (
-    <div className="flex flex-col h-screen   overflow-hidden// overflow-x-hidden ">
+    <div className="flex flex-col h-screen overflow-hidden// overflow-x-hidden ">
       <ChallengeHeader challengeId={params.id} />
 
-      {/* messages + summary  */}
+      {/* messages(attempt + ai-feedback) + tips + assessment  */}
       <ChallengeBody challengeId={params.id} />
 
+      {/* textarea + buttons + progressbar */}
       <Input challengeId={params.id} />
     </div>
   );

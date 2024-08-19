@@ -20,8 +20,6 @@ type Props = {
   challengeId: string;
 };
 
-/* ChallengeBody: ai-assessment + summary(grade+time) */
-
 function ChallengeBody({ challengeId }: Props) {
   const { data: session } = useSession();
 
@@ -32,7 +30,7 @@ function ChallengeBody({ challengeId }: Props) {
           db,
           "users",
           session?.user?.email!,
-          /* "chats" */ "challenges",
+          "challenges",
           challengeId,
           "messages"
         ),
@@ -51,7 +49,7 @@ function ChallengeBody({ challengeId }: Props) {
         messages?.empty && "flex flex-col justify-end"
       }   overflow-y-auto overflow-x-hidden overflow-hidden (use up majority of the screen -> pushes down chatInput (with help of css in page)): flex-1  `}
     >
-      {/* 📝 challenge is ongoing - show tips, todo */}
+      {/* 📝 challenge is ongoing - show tips */}
       {messages?.empty && (
         <div className="relative m-auto cursor-default group">
           <div className="group-hover:opacity-0 flex items-center space-x-1.5 py-4 px-12">
