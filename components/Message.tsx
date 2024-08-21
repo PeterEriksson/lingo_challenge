@@ -14,12 +14,15 @@ function Message({ message }: Props) {
         <img src={message?.user?.avatar} alt="avatar" className="h-8 w-8 " />
         <div>
           {message?.isSubjectDiscussed && (
-            <h1 className="font-bold">ai suggested improvements</h1>
+            <h3 className="font-bold text-md text-green-600 opacity-60">
+              ai suggested improvements
+            </h3>
           )}
+
           <p
             className={`${
               !message?.isSubjectDiscussed && isChatGPT && "font-bold"
-            }  `}
+            } text-base  `}
           >
             {message?.text}
           </p>

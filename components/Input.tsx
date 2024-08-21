@@ -264,7 +264,7 @@ function Input({ challengeId }: Props) {
               <p
                 key={i}
                 onClick={() => handleSpecialLetter(letter)}
-                className="text-black/70 p-1 cursor-pointer hover:text-black"
+                className="text-black/50 p-1 cursor-pointer hover:text-black"
               >
                 {letter}
               </p>

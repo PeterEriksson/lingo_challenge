@@ -21,7 +21,8 @@ const config: Config = {
         main: "#11A37F",
       },
       fontSize: {
-        xxs: "0.625rem", // 10px
+        xxs: "0.625rem", // 10px,
+        md: "0.9375rem", // 15px, between text-sm (14px) and text-base (16px)
       },
     },
   },

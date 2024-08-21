@@ -44,9 +44,7 @@ function Sidebar() {
         )}
       </Link>
 
-      <hr className="bg-gray-300 w-full mb-3" />
-
-      <div className="flex-1">
+      <div className="flex-1 mt-1.5">
         {/* <NewChallenge /> */}
 
         {challenges?.empty && (
@@ -55,7 +53,7 @@ function Sidebar() {
           </p>
         )}
 
-        <div className="flex flex-col space-y-2 my-2">
+        <div className="flex flex-col space-y-3 my-2">
           {loading && (
             <div className="text-center ">
               <Loading />

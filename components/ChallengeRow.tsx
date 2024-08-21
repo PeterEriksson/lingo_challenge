@@ -49,18 +49,18 @@ function ChallengeRow({ id, challenge }: Props) {
       {challenge?.data().completed ? (
         <>
           {["Ok", "Good", "Gut"].includes(challenge?.data().grade) ? (
-            <CheckIcon className="h-5 w-5 text-gray-600 " />
+            <CheckIcon className="h-5 w-5 text-gray-600/80 " />
           ) : (
-            <XMarkIcon className="h-5 w-5 text-gray-600 " />
+            <XMarkIcon className="h-5 w-5 text-gray-600/80 " />
           )}
-          <p className="flex-1   !truncate text-gray-800   ">
+          <p className="flex-1   !truncate text-gray-800/60   ">
             {challenge?.data().title}
           </p>
         </>
       ) : (
         <>
           <PencilSquareIcon className="h-5 w-5 text-gray-600 " />
-          <p className="flex-1   !truncate text-gray-800   ">
+          <p className="flex-1   !truncate text-gray-800/90 font-semibold  ">
             {challenge?.data().title}
           </p>
         </>

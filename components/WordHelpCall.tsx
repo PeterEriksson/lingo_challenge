@@ -201,7 +201,7 @@ function WordHelpCall({
       onClick={(e) => activateCallWordHelp(e)}
       className={`flex w-fit group ${
         !call && "cursor-pointer"
-      } space-x-2 items-center p-2 rounded-lg border border-gray-400/70     `}
+      } space-x-2 items-center p-2 rounded-lg border border-gray-400/40     `}
     >
       {call ? (
         <form
