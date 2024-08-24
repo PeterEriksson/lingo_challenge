@@ -93,6 +93,7 @@ function Input({ challengeId }: Props) {
       message
     );
 
+    //get openai respone then add messages (user-attempt + openai-assessmen)
     await fetch("/api/challenge/assessment", {
       method: "POST",
       headers: {
@@ -117,7 +118,7 @@ function Input({ challengeId }: Props) {
           failSound?.play();
           toast.error("Failed challenge..", { id: notification });
         }
-        //move setDoc to route?
+        //update the challenge doc with the assessment/grade
         return setDoc(
           doc(db, "users", session?.user?.email!, "challenges", challengeId),
           {
@@ -175,7 +176,7 @@ function Input({ challengeId }: Props) {
 
   const promptAdjusted = prompt.replace(/\s/g, "");
 
-  /* keep highlighted text sync'd when y-oveflow... */
+  /* keep highlighted text sync'd if y-oveflow... */
   const [scrollPosition, setScrollPosition] = React.useState<number>(0);
   const handleScroll = (e: any) => {
     setScrollPosition(e.target.scrollTop);
@@ -193,100 +194,98 @@ function Input({ challengeId }: Props) {
   }, []);
 
   return (
-    <div
-      className={`text-black text-sm relative ${
-        !challenge?.completed && "border-t border-gray-200/90"
-      }      px-4 pt-4 overflow-issue-temp-fix: pb-10`}
-    >
+    <>
       <audio id="audio_success_tag" src={"/sounds/pass.mp3"} />
       <audio id="audio_fail_tag" src={"/sounds/fail.mp3"} />
 
-      {/* ARROW DOWN BOUNCE (ux) */}
-      {!challenge?.completed && prompt.length == 0 && (
-        <div className="absolute flex justify-center w-full pointer-events-none -top-10">
-          <ArrowDownCircleIcon className="h-10 w-10 text-black/70 animate-bounce " />
-        </div>
-      )}
+      {!challenge?.completed && (
+        <div
+          className={`text-black text-sm relative border-t border-gray-200/90 px-4 pt-4 overflow-issue-temp-fix: pb-10`}
+        >
+          {/* ARROW DOWN BOUNCE */}
+          {prompt.length == 0 && (
+            <div className="absolute flex justify-center w-full pointer-events-none -top-10">
+              <ArrowDownCircleIcon className="h-10 w-10 text-black/70 animate-bounce " />
+            </div>
+          )}
 
-      {promptAdjusted.length > 0 && (
-        <InputProgress
-          prompt={prompt}
-          minChars={challenge?.minChars}
-          maxChars={challenge?.maxChars}
-        />
-      )}
+          {promptAdjusted.length > 0 && (
+            <InputProgress
+              prompt={prompt}
+              minChars={challenge?.minChars}
+              maxChars={challenge?.maxChars}
+            />
+          )}
 
-      {/* TEXTAREA */}
-      <div className={` ${challenge?.completed && "hidden"}`}>
-        <PencilSquareIcon className="w-5 h-5 opacity-40 absolute pointer-events-none left-4 top-[20px]" />
-        <div className="relative w-full overflow-hidden">
-          {/* WORDS HIGHLIGHTED */}
-          <div
-            className=" text-lg pl-6  absolute top-0 left-0 w-full h-full  whitespace-pre-wrap break-words text-transparent pointer-events-none"
-            dangerouslySetInnerHTML={{ __html: highlightWords(prompt) }}
-            style={{ top: -scrollPosition }}
-          />
-          <textarea
-            ref={inputRef}
-            onChange={(e) => setPrompt(e.target.value)}
-            value={prompt}
-            rows={4}
-            //display language emoji - temp solution
-            placeholder={`Give it a shot! ${challenge?.language
-              ?.split(" ")
-              ?.pop()}`}
-            disabled={!session || challenge?.completed}
-            className={` ${
-              loading && "text-gray-300"
-            } text-lg pl-6 disabled:cursor-not-allowed disabled:text-gray-300 relative w-full bg-transparent text-black resize-none whitespace-pre-wrap break-words outline-none     `}
-          />
-        </div>
-      </div>
+          {/* TEXTAREA */}
+          <div>
+            <PencilSquareIcon className="w-5 h-5 opacity-40 absolute pointer-events-none left-4 top-[20px]" />
+            <div className="relative w-full overflow-hidden">
+              {/* WORDS HIGHLIGHTED */}
+              <div
+                className=" text-lg pl-6  absolute top-0 left-0 w-full h-full  whitespace-pre-wrap break-words text-transparent pointer-events-none"
+                dangerouslySetInnerHTML={{ __html: highlightWords(prompt) }}
+                style={{ top: -scrollPosition }}
+              />
+              <textarea
+                ref={inputRef}
+                onChange={(e) => setPrompt(e.target.value)}
+                value={prompt}
+                rows={4}
+                //display language emoji - temp solution
+                placeholder={`Give it a shot! ${challenge?.language
+                  ?.split(" ")
+                  ?.pop()}`}
+                disabled={!session || loading}
+                className={` ${
+                  loading && "text-gray-300"
+                } text-lg pl-6 disabled:cursor-not-allowed disabled:text-gray-300 relative w-full bg-transparent text-black resize-none whitespace-pre-wrap break-words outline-none     `}
+              />
+            </div>
+          </div>
 
-      {/* CONTAINER: WORD-HELP, SPECIAL-LETTERS, SUBMIT BUTTON */}
-      <div
-        className={`${
-          challenge?.completed && "hidden"
-        } flex justify-between items-center  `}
-      >
-        <div className={`opacity-90 space-x-6 flex items-center    `}>
-          <WordHelpCall
-            email={session?.user?.email!}
-            setPrompt={setPrompt}
-            challenge={challenge}
-            challengeId={challengeId}
-            inputRef={inputRef}
-            setWordsToHighlight={setWordsToHighlight}
-          />
+          {/* CONTAINER: WORD-HELP, SPECIAL-LETTERS, SUBMIT BUTTON */}
+          <div className={`flex justify-between items-center  `}>
+            <div className={`opacity-90 space-x-6 flex items-center    `}>
+              <WordHelpCall
+                email={session?.user?.email!}
+                setPrompt={setPrompt}
+                challenge={challenge}
+                challengeId={challengeId}
+                inputRef={inputRef}
+                setWordsToHighlight={setWordsToHighlight}
+              />
 
-          <div className={`flex space-x-1.5 !ml-14 `}>
-            {challenge?.specialLetters.map((letter: string, i: number) => (
-              <p
-                key={i}
-                onClick={() => handleSpecialLetter(letter)}
-                className="text-black/50 p-1 cursor-pointer hover:text-black"
-              >
-                {letter}
-              </p>
-            ))}
+              <div className={`flex space-x-1.5 !ml-14 `}>
+                {challenge?.specialLetters.map((letter: string, i: number) => (
+                  <p
+                    key={i}
+                    onClick={() => handleSpecialLetter(letter)}
+                    className="text-black/50 p-1 cursor-pointer hover:text-black"
+                  >
+                    {letter}
+                  </p>
+                ))}
+              </div>
+            </div>
+            <button
+              className=" disabled:bg-gray-300 disabled:cursor-not-allowed bg-main text-white hover:opacity-50 rounded-lg font-bold px-6 py-3.5    temp-fix: -mr-[3px] "
+              onClick={(e) => handleSubmit(e)}
+              disabled={
+                !session ||
+                !prompt.trim() ||
+                loading ||
+                challenge?.completed ||
+                promptAdjusted.length < challenge?.minChars ||
+                promptAdjusted.length > challenge?.maxChars
+              }
+            >
+              Submit
+            </button>
           </div>
         </div>
-        <button
-          className=" disabled:bg-gray-300 disabled:cursor-not-allowed bg-main text-white hover:opacity-50 rounded-lg font-bold px-6 py-3.5    tempSmallFix: -mr-[3px] "
-          onClick={(e) => handleSubmit(e)}
-          disabled={
-            !session ||
-            !prompt.trim() ||
-            loading ||
-            challenge?.completed ||
-            promptAdjusted.length < challenge?.minChars ||
-            promptAdjusted.length > challenge?.maxChars
-          }
-        >
-          Submit
-        </button>
-      </div>
-    </div>
+      )}
+    </>
   );
 }
 

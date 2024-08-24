@@ -9,7 +9,7 @@ interface Message {
   isSubjectDiscussed?: boolean;
 }
 
-//how shold Challenge look like..placeholder:?
+//how shold Challenge look like..?
 //NOT IN USE
 interface Challenge {
   tips: string[];
@@ -24,7 +24,6 @@ interface Challenge {
   assessment?: {
     grade: string;
     completionTime: number;
-    wordsProvided?: string; //words provided from wordCall(or helpful words?) ... store somehow -> remembered easier -> serve the user
-    livesUsed?: number;
+    wordsToHighlight?: string[];
   };
 }

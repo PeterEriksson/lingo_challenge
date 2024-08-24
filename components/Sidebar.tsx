@@ -12,7 +12,7 @@ import ChallengeRow from "./ChallengeRow";
 import ModelSelection from "./ModelSelection";
 import Link from "next/link";
 import { ArrowLeftEndOnRectangleIcon } from "@heroicons/react/24/solid";
-import Loading from "./Loading";
+import LoadingSidebar from "./LoadingSidebar";
 import { HomeIcon, UserIcon } from "@heroicons/react/24/outline";
 import { HomeIcon as HomeIconSolid } from "@heroicons/react/24/solid";
 import { usePathname } from "next/navigation";
@@ -56,7 +56,7 @@ function Sidebar() {
         <div className="flex flex-col space-y-3 my-2">
           {loading && (
             <div className="text-center ">
-              <Loading />
+              <LoadingSidebar />
             </div>
           )}
 

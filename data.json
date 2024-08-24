@@ -11,6 +11,15 @@
       ]
     },
     {
+      "title": "Favorite film",
+      "description": "Write about your favorite film.",
+      "tips": [
+        "My favorite film is [...]",
+        "The reason I love this film is [...]",
+        "One quote from the film is [...]"
+      ]
+    },
+    {
       "title": "Holiday memory",
       "description": "Write about a holiday that comes to mind",
       "tips": [
@@ -27,15 +36,6 @@
         "Our target market is [...]",
         "Our business model involves [...]",
         "The technology behind our startup is [...]"
-      ]
-    },
-    {
-      "title": "Favorite film",
-      "description": "Write about your favorite film.",
-      "tips": [
-        "My favorite film is [...]",
-        "The reason I love this film is [...]",
-        "One quote from the film is [...]"
       ]
     }
   ],

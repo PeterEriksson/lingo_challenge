@@ -15,7 +15,7 @@ export async function POST(req: any, res: NextApiResponse<Data>) {
   const { prompt, challengeId, model, session, subject, selectedLanguage } =
     await req.json();
 
-  //📝✅ get initial response whether subject is discussed
+  // get initial response whether subject is discussed
   const subjectDiscussedResponse = await subjectDiscussedQuery(
     prompt,
     model,
@@ -76,7 +76,7 @@ export async function POST(req: any, res: NextApiResponse<Data>) {
     .collection("messages")
     .add(message);
 
-  // set challengeDoc here?? now on the client..
+  // set challengeDoc here?? now on the client..(Input.tsx)
 
   return NextResponse.json({
     answer: message.text,

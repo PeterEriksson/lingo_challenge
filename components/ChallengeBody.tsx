@@ -45,7 +45,7 @@ function ChallengeBody({ challengeId }: Props) {
 
   return (
     <div
-      className={`${
+      className={` ${
         messages?.empty && "flex flex-col justify-end"
       }   overflow-y-auto overflow-x-hidden overflow-hidden (use up majority of the screen -> pushes down chatInput (with help of css in page)): flex-1  `}
     >
@@ -100,7 +100,8 @@ function ChallengeBody({ challengeId }: Props) {
             </p>
           </div>
 
-          {challenge?.newWords?.length > 0 && (
+          {/* new solution in Message. Todo: fix Message and remove below. */}
+          {/* {challenge?.newWords?.length > 0 && (
             <>
               <h2 className={`font-bold opacity-40 -mb-1 mt-1  `}>New words</h2>
               {challenge?.newWords?.map((string: string, i: number) => (
@@ -109,9 +110,9 @@ function ChallengeBody({ challengeId }: Props) {
                 </p>
               ))}
             </>
-          )}
+          )} */}
 
-          <p className="text-xs opacity-70 mt-6 ">
+          <p className="text-xs opacity-50 mt-6 ">
             note: ai can make mistakes.
           </p>
         </div>

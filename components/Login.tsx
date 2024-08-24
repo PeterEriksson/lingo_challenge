@@ -6,9 +6,6 @@ import Image from "next/image";
 function Login() {
   return (
     <div className="bg-white rounded-xl h-screen flex flex-col items-center justify-center text-center">
-      {/* <h1 className="uppercase tracking-wide text-4xl opacity-80">
-        lingo challenge
-      </h1> */}
       <Image alt="logo" src={"/logo1.png"} width={400} height={400} />
       <h3 className="-mt-2 font-bold text-gray-500/90 mb-5">
         Exercises for intermediate{" "}

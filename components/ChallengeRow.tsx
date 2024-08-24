@@ -43,7 +43,7 @@ function ChallengeRow({ id, challenge }: Props) {
       className={`challengeRow justify-center group ${
         pathname.includes(id) ? "" : "hover:bg-gray-100/80"
       }  ${active && "bg-gray-200/80"} transition duration-150 ease-in ${
-        rowPressed && "!bg-gray-300"
+        rowPressed && "!bg-gray-300/60 "
       } `}
     >
       {challenge?.data().completed ? (

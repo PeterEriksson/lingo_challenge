@@ -41,13 +41,13 @@
 
 /* --------------------------------------------------------- */
 
-.loadingAnimation {
+.loadingSidebarAnimation {
   display: inline-flex;
   align-items: center; /* Center dots vertically */
   width: auto; /* Adjust width automatically based on content */
 }
 
-.dot {
+.sidebarDot {
   display: inline-block;
   width: 8px;
   height: 8px;
@@ -58,11 +58,11 @@
   animation: bounce 1s infinite; /* Apply bounce animation */
 }
 
-.dot:nth-child(2) {
+.sidebarDot:nth-child(2) {
   animation-delay: 0.1s; /* Delay for second dot */
 }
 
-.dot:nth-child(3) {
+.sidebarDot:nth-child(3) {
   animation-delay: 0.2s; /* Delay for third dot */
 }
 
@@ -77,3 +77,30 @@
 }
 
 /* -------------------- */
+@keyframes loadingScreenBounce {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.5);
+  }
+}
+
+.loadingScreenDot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  animation: loadingScreenBounce 1.1s infinite ease-in-out;
+
+  background-color: gray;
+  opacity: 0.65;
+}
+
+.loadingScreenDot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.loadingScreenDot:nth-child(3) {
+  animation-delay: 0.4s;
+}
