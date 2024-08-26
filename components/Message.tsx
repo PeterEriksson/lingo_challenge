@@ -4,11 +4,13 @@ import React from "react";
 
 type Props = {
   message: DocumentData;
+  grade?: string;
 };
 
-function Message({ message }: Props) {
-  const isChatGPT = message.user.name == "ChatGPT";
-  const wordsToHighlight = ["test", "Unsere", "sparen sie geld"];
+function Message({ message, grade }: Props) {
+  const isUser = message.user.name !== "ChatGPT";
+  const challengeFailed = !grade || !["Ok", "Good", "Gut"].includes(grade);
+
   const [showImprovement, setShowImprovement] = React.useState<boolean>(false);
 
   // Function to split the message text and highlight the words
@@ -23,11 +25,11 @@ function Message({ message }: Props) {
       wordsToHighlight.some(
         (word) => word.toLowerCase() === part.toLowerCase()
       ) ? (
-        <span key={index} style={{ backgroundColor: "yellow" }}>
+        <span key={index} className="bg-red-300/70">
           {part}
         </span>
       ) : (
-        <span key={index} style={{ backgroundColor: "white" }}>
+        <span key={index} className="bg-white">
           {part}
         </span>
       )
@@ -38,35 +40,59 @@ function Message({ message }: Props) {
   //two returns? one for user, 1 for openai
   ////pass down grade from ChallengeBody
 
-  return (
-    <div className={`py-5 text-black ${isChatGPT && " "}`}>
-      <div className="flex space-x-3.5 px-3 max-w-2xl mx-auto ">
-        <Image
-          src={message?.user?.avatar}
-          alt="avatar"
-          width={100}
-          height={100}
-          className="h-8 w-8"
-        />
-        <div>
-          {message?.isSubjectDiscussed && (
-            <h3 className="font-bold text-md text-green-600 opacity-60">
-              ai suggested improvements
-            </h3>
-          )}
+  if (isUser) {
+    return (
+      <div className={`py-5 text-black `}>
+        <div className="flex space-x-3.5 px-3 max-w-2xl mx-auto ">
+          <Image
+            src={message?.user?.avatar}
+            alt="avatar"
+            width={100}
+            height={100}
+            className="h-8 w-8"
+          />
+          <div>
+            {message?.isSubjectDiscussed && (
+              <h3 className="font-bold text-md text-green-600 opacity-60">
+                ai suggested improvements
+              </h3>
+            )}
 
-          <p
-            onClick={() => setShowImprovement(true)}
-            className={`${
-              !message?.isSubjectDiscussed && isChatGPT && "font-bold"
-            } text-base  `}
-          >
-            {getHighlightedText(message?.text, wordsToHighlight)}
-          </p>
+            <p
+              onClick={() => setShowImprovement(true)}
+              className={` text-base  `}
+            >
+              {getHighlightedText(message?.text, message?.wordsToHighlight)}
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+
+    // openai response
+  } else {
+    return (
+      <div className={`py-5 text-black `}>
+        <div className="flex space-x-3.5 px-3 max-w-2xl mx-auto ">
+          <Image
+            src={message?.user?.avatar}
+            alt="avatar"
+            width={100}
+            height={100}
+            className="h-8 w-8"
+          />
+          <div>
+            {!challengeFailed && (
+              <h1 className="font-bold">ai suggested improvements</h1>
+            )}
+            <p className={`${challengeFailed && "font-bold"}  `}>
+              {message?.text}
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Message;

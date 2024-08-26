@@ -79,6 +79,7 @@ function Input({ challengeId }: Props) {
           session?.user?.image! ||
           `https://ui-avatars.com/api/?name=${session?.user?.name}`,
       },
+      wordsToHighlight: wordsToHighlight,
     };
 
     await addDoc(
@@ -171,7 +172,7 @@ function Input({ challengeId }: Props) {
     // Regular expression to match words
     const regex = new RegExp(`\\b(${wordsToHighlight.join("|")})\\b`, "gi");
     // Replace matched words with highlighted span
-    return text.replace(regex, '<span class="bg-yellow-300">$1</span>');
+    return text.replace(regex, '<span class="bg-red-300/70">$1</span>');
   };
 
   const promptAdjusted = prompt.replace(/\s/g, "");

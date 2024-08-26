@@ -32,10 +32,10 @@ function ChallengeHeader({ challengeId }: Props) {
         </p>
       ) : (
         <div>
-          <p className="font-bold text-lg md:text-xl">
+          <h1 className="font-bold text-gray-500/70 text-lg md:text-xl">
             {challenge?.description}
-          </p>
-          <h4 className="font-bold text-xs text-gray-500/70">
+          </h1>
+          <h4 className="font-bold text-xs text-gray-500/60 ">
             {challenge?.minChars}-{challenge?.maxChars} chars
           </h4>
         </div>
@@ -43,13 +43,13 @@ function ChallengeHeader({ challengeId }: Props) {
 
       {/* COUNTDOWN/COUNTUP */}
       {!challenge?.completed && (
-        <h1
-          className={`w-10 text-right md:text-lg font-bold text-gray-500/80 tracking-wide  relative ${
+        <h3
+          className={`w-10 text-right md:text-lg font-bold text-gray-500/60 tracking-wide  relative ${
             loading && "opacity-0"
           }`}
         >
           {formatTime(seconds)}
-        </h1>
+        </h3>
       )}
 
       {/* HEARTS */}

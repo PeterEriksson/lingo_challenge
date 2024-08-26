@@ -7,6 +7,7 @@ interface Message {
     avatar: string;
   };
   isSubjectDiscussed?: boolean;
+  wordsToHighlight?: string[];
 }
 
 //how shold Challenge look like..?
@@ -24,6 +25,5 @@ interface Challenge {
   assessment?: {
     grade: string;
     completionTime: number;
-    wordsToHighlight?: string[];
   };
 }

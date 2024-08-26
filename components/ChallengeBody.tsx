@@ -73,7 +73,11 @@ function ChallengeBody({ challengeId }: Props) {
       )}
 
       {messages?.docs.map((message) => (
-        <Message message={message.data()} key={message.id} />
+        <Message
+          grade={challenge?.grade}
+          message={message.data()}
+          key={message.id}
+        />
       ))}
 
       {/* Summary */}

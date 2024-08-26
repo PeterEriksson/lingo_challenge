@@ -48,7 +48,7 @@ function Sidebar() {
         {/* <NewChallenge /> */}
 
         {challenges?.empty && (
-          <p className="text-xs opacity-50">
+          <p className="text-xs opacity-50 max-w-[90%] text-center mt-4">
             Your challenges will be displayed here..
           </p>
         )}

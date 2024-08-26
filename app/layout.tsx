@@ -45,7 +45,7 @@ export default async function RootLayout({
           {!session ? (
             <Login />
           ) : (
-            <div className="flex space-x-3.5 bg-gray-200 h-screen px-3.5 ">
+            <div className="flex space-x-3.5 bg-gray-200 h-screen px-3.5       max-w-5xl mx-auto ">
               <div className="my-3.5 bg-white max-w-xs overflow-y-auto md:min-w-[15rem] rounded-xl">
                 <Sidebar />
               </div>
