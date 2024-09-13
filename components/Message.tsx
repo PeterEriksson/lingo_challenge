@@ -25,7 +25,7 @@ function Message({ message, grade }: Props) {
       wordsToHighlight.some(
         (word) => word.toLowerCase() === part.toLowerCase()
       ) ? (
-        <span key={index} className="bg-red-300/70">
+        <span key={index} className="bg-highlight">
           {part}
         </span>
       ) : (
@@ -83,9 +83,21 @@ function Message({ message, grade }: Props) {
           />
           <div>
             {!challengeFailed && (
-              <h1 className="font-bold">ai suggested improvements</h1>
+              <h1
+                onClick={() => setShowImprovement(true)}
+                className={`font-bold  ${
+                  showImprovement ? "cursor-auto" : "cursor-pointer"
+                } `}
+              >
+                <span className={`${showImprovement && "hidden"} `}>show</span>{" "}
+                ai improvements
+              </h1>
             )}
-            <p className={`${challengeFailed && "font-bold"}  `}>
+            <p
+              className={`${challengeFailed && "font-bold"} ${
+                !challengeFailed && (showImprovement ? "inline" : "hidden")
+              } `}
+            >
               {message?.text}
             </p>
           </div>

@@ -226,7 +226,7 @@ function WordHelpCall({
               <p
                 ref={translatedParagraphRef}
                 onClick={handleTranslationClick}
-                className=" text-gray-700 cursor-pointer hover:bg-yellow-300 px-1 rounded-md transition duration-150 ease-in "
+                className=" text-gray-700 cursor-pointer hover:bg-highlight px-1 rounded-md transition duration-150 ease-in "
               >
                 {translation}
               </p>

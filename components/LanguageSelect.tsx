@@ -31,7 +31,7 @@ function LanguageSelect() {
     <>
       <h3 className="tracking-tight uppercase font-bold mb-1.5 mt-4">
         {selectedLanguageString == ""
-          ? "🌎 LET'S GET STARTED "
+          ? "🌎 LET'S GET STARTED"
           : "🌎 " + letsGoTranslation()}
       </h3>
       <div className=" border-2 border-gray-900 rounded-xl p-1">

@@ -4,18 +4,17 @@ import "./globals.css";
 import Sidebar from "@/components/Sidebar";
 import { SessionProvider } from "../components/SessionProvider";
 import { getServerSession } from "next-auth";
-import Login from "../components/Login";
 import { authOptions } from "@/auth";
 import ToasterClientProvider from "@/components/ToasterClientProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
+/* font experimentation */
 const roboto_mono = Roboto_Mono({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-roboto-mono",
 });
-
 const press_start = Press_Start_2P({
   subsets: ["latin"],
   display: "swap",
@@ -42,21 +41,23 @@ export default async function RootLayout({
     >
       <body>
         <SessionProvider session={session}>
-          {!session ? (
-            <Login />
-          ) : (
-            <div className="flex space-x-3.5 bg-gray-200 h-screen px-3.5       max-w-5xl mx-auto ">
+          <div
+            className={`${
+              session && "space-x-3.5"
+            } flex bg-gray-200 h-screen px-3.5      max-w-5xl mx-auto `}
+          >
+            {session && (
               <div className="my-3.5 bg-white max-w-xs overflow-y-auto md:min-w-[15rem] rounded-xl">
                 <Sidebar />
               </div>
+            )}
 
-              <ToasterClientProvider />
+            <ToasterClientProvider />
 
-              <div className="my-3.5 bg-white flex-1 rounded-xl overflow-y-auto// overflow-y-hidden ">
-                {children}
-              </div>
+            <div className="my-3.5 bg-white flex-1 rounded-xl overflow-y-auto// overflow-y-hidden ">
+              {children}
             </div>
-          )}
+          </div>
         </SessionProvider>
       </body>
     </html>

@@ -2,10 +2,7 @@
 
 import React from "react";
 import { signOut, useSession } from "next-auth/react";
-import {
-  useCollection,
-  useCollectionData,
-} from "react-firebase-hooks/firestore";
+import { useCollection } from "react-firebase-hooks/firestore";
 import { collection, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebase";
 import ChallengeRow from "./ChallengeRow";
@@ -16,6 +13,7 @@ import LoadingSidebar from "./LoadingSidebar";
 import { HomeIcon, UserIcon } from "@heroicons/react/24/outline";
 import { HomeIcon as HomeIconSolid } from "@heroicons/react/24/solid";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 
 function Sidebar() {
   const { data: session } = useSession();
@@ -31,22 +29,21 @@ function Sidebar() {
 
   return (
     <div className="p-2 flex flex-col h-full ">
-      <Link className="my-3 mx-auto relative group" href={`/`}>
+      <Link className="mt-3 mx-auto relative group" href={`/`}>
         {/* hover -> css-tooltip */}
-        <h2 className="opacity-0 transition duration-500 group-hover:opacity-85 absolute -top-5 z-50 -left-[8px] text-xxs py-0.5 px-1 bg-gray-300 rounded-sm text-white ">
+        <h2 className="opacity-0 transition duration-500 group-hover:opacity-85 absolute -top-4 z-50 left-[16px] text-xxs py-0.5 px-1 bg-gray-300 rounded-sm text-white ">
           Home
         </h2>
 
-        {pathname == "/" ? (
+        <Image height={75} width={75} alt="lc-icon" src="/lc-white-icon.png" />
+        {/* {pathname == "/" ? (
           <HomeIconSolid className="h-5 w-5  " />
         ) : (
           <HomeIcon className="h-5 w-5  " />
-        )}
+        )} */}
       </Link>
 
       <div className="flex-1 mt-1.5">
-        {/* <NewChallenge /> */}
-
         {challenges?.empty && (
           <p className="text-xs opacity-50 max-w-[90%] text-center mt-4">
             Your challenges will be displayed here..
@@ -71,19 +68,17 @@ function Sidebar() {
       </div>
 
       {session && (
-        <div className="flex justify-between items-center">
+        <div className="relative group">
+          {/* hover -> css-tooltip */}
+          <h2 className="opacity-0 transition duration-500 group-hover:opacity-85 absolute -top-5 z-50 -left-[8px] text-xxs py-0.5 px-1 bg-gray-300 rounded-sm text-white ">
+            Log out
+          </h2>
           <ArrowLeftEndOnRectangleIcon
             className="h-8 w-8 text-gray-700 hover:opacity-100 opacity-60 cursor-pointer"
             onClick={() => {
               signOut({ callbackUrl: "http://localhost:3000/" }); //(we need '=>' to get around typescript)
             }}
           />
-          {/* <Link
-            href={`/profile`}
-            className=" relative cursor-pointer opacity-60 hover:opacity-100"
-          >
-            <UserIcon className="w-7 h-7" />
-          </Link> */}
         </div>
       )}
     </div>

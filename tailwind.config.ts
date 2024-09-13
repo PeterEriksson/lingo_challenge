@@ -19,6 +19,7 @@ const config: Config = {
       },
       colors: {
         main: "#11A37F",
+        highlight: "#FCD34D",
       },
       fontSize: {
         xxs: "0.625rem", // 10px,

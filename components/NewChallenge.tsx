@@ -1,18 +1,20 @@
 "use client";
 import React from "react";
 import { useRouter } from "next/navigation";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  DocumentData,
+  orderBy,
+  query,
+  serverTimestamp,
+} from "firebase/firestore";
 import { useSession } from "next-auth/react";
 import toast from "react-hot-toast";
 import { db } from "@/firebase";
 import { getSpecialLetters } from "@/lib/getSpecialLetters";
 import { useLanguageStringStore } from "@/store/store";
-
-type Challenge = {
-  tips: string[];
-  title: string;
-  description: string;
-};
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
 type Props = {
   challenge: Challenge;
@@ -28,6 +30,8 @@ function NewChallenge({ challenge, index }: Props) {
   const specialLetters = getSpecialLetters(selectedLanguageString);
 
   const createNewChallenge = async (challenge: Challenge) => {
+    if (!session) return;
+
     if (selectedLanguageString === "") {
       toast("please select a language", {
         icon: "🌎",
@@ -66,6 +70,21 @@ function NewChallenge({ challenge, index }: Props) {
     return tiltClasses[index % tiltClasses.length];
   };
 
+  const [challenges, loading, error] = useCollectionData(
+    session &&
+      query(
+        collection(db, "users", session.user?.email!, "challenges"),
+        orderBy("createdAt", "asc")
+      )
+  );
+
+  const passed = () =>
+    challenges?.some(
+      (challengeItem) =>
+        challenge.description === challengeItem.description &&
+        ["Good", "Ok"].includes(challengeItem.grade)
+    ) || false;
+
   return (
     <button
       onMouseDown={() => setButtonPressed(true)}
@@ -81,9 +100,10 @@ function NewChallenge({ challenge, index }: Props) {
         selectedLanguageString === ""
           ? "opacity-70 cursor-default hover:scale-[1.025]"
           : "opacity-100 hover:scale-105"
-      }`}
+      }
+      `}
     >
-      {challenge?.title}
+      {challenge?.title} {passed() && " ✅"}
     </button>
   );
 }

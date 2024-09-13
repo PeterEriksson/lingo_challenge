@@ -32,7 +32,11 @@ function ChallengeHeader({ challengeId }: Props) {
         </p>
       ) : (
         <div>
-          <h1 className="font-bold text-gray-500/70 text-lg md:text-xl">
+          <h1
+            className={`font-bold ${
+              challenge?.completed ? "text-gray-500/70" : "text-gray-500"
+            }  text-lg md:text-xl`}
+          >
             {challenge?.description}
           </h1>
           <h4 className="font-bold text-xs text-gray-500/60 ">
@@ -58,7 +62,7 @@ function ChallengeHeader({ challengeId }: Props) {
           <HeartIcon
             key={i}
             className={`md:h-5 md:w-5 w-4 h-4 ${
-              i + 1 > challenge?.livesLeft ? "text-gray-500" : "text-red-300 "
+              i + 1 > challenge?.livesLeft ? "text-gray-500" : "text-highlight "
             }
             ${challenge?.livesLeft == 1 && i == 0 && "animate-pulse"}
             `}

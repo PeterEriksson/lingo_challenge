@@ -39,5 +39,11 @@
       ]
     }
   ],
-  "languages": ["German 🇩🇪", "Spanish 🇪🇸", "French 🇫🇷", "Swedish 🇸🇪"]
+  "languages": [
+    "German 🇩🇪",
+    "Spanish 🇪🇸",
+    "French 🇫🇷",
+    "Italian 🇮🇹",
+    "Swedish 🇸🇪"
+  ]
 }

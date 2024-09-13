@@ -64,8 +64,8 @@ function ChallengeBody({ challengeId }: Props) {
               //Control how many times to run. 0 | false to run infinitely
               loop={false}
               cursor
-              typeSpeed={70}
-              deleteSpeed={50}
+              typeSpeed={50}
+              deleteSpeed={40}
               delaySpeed={1000}
             />
           </p>

@@ -11,19 +11,18 @@ interface Message {
 }
 
 //how shold Challenge look like..?
-//NOT IN USE
-interface Challenge {
+type Challenge = {
+  userId?: string;
+  createdAt?: admin.firestore.Timestamp;
+  title: string;
+  description: string;
   tips: string[];
-  livesLeft: number;
-  challengeTitle: string;
-  challengeDescription: string;
-  messages?: Message[];
-  userId: string;
-  createdAt: admin.firestore.Timestamp;
-  completed: boolean;
-  language: string;
-  assessment?: {
-    grade: string;
-    completionTime: number;
-  };
-}
+  startingLives?: number;
+  livesLeft?: number;
+  completed?: boolean;
+  minChars?: number;
+  maxChars?: number;
+  language?: string;
+  specialLetters?: string[];
+  grade?: string;
+};

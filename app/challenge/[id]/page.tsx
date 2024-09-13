@@ -10,7 +10,9 @@ type Props = {
   };
 };
 async function ChallengePage({ params }: Props) {
+  //not in use...
   const session = await getServerSession(authOptions);
+
   return (
     <div className="flex flex-col h-screen overflow-hidden// overflow-x-hidden ">
       <ChallengeHeader challengeId={params.id} />
