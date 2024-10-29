@@ -40,11 +40,11 @@ function ChallengeRow({ id, challenge }: Props) {
       onMouseUpCapture={() => setRowPressed(false)}
       onMouseLeave={() => setRowPressed(false)}
       href={`/challenge/${id}`}
-      className={`challengeRow justify-center group ${
-        pathname.includes(id) ? "" : "hover:bg-gray-100/80"
+      className={`challengeRow// justify-center group ${
+        pathname.includes(id) ? "" : "hover:bg-gray-100/80  "
       }  ${active && "bg-gray-200/80"} transition duration-150 ease-in ${
         rowPressed && "!bg-gray-300/60 "
-      } `}
+      }   rounded-lg px-4 py-6 text-sm flex items-center justify-center space-x-2 cursor-pointer transition-all duration-200 ease-out `}
     >
       {challenge?.data().completed ? (
         <>

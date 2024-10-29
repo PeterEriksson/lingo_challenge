@@ -80,9 +80,9 @@ function NewChallenge({ challenge, index }: Props) {
 
   const passed = () =>
     challenges?.some(
-      (challengeItem) =>
-        challenge.description === challengeItem.description &&
-        ["Good", "Ok"].includes(challengeItem.grade)
+      (_challenge) =>
+        challenge.title === _challenge.title &&
+        ["Good", "Ok"].includes(_challenge.grade)
     ) || false;
 
   return (

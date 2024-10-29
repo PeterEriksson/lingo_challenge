@@ -23,9 +23,9 @@ export async function POST(req: any, res: NextApiResponse<Data>) {
     selectedLanguage
   );
   const isSubjectDiscussed = subjectDiscussedResponse == "Yes";
-  //console.log("subjectDiscussedResponse: " + subjectDiscussedResponse);
   console.log("subject is discussed? " + isSubjectDiscussed);
 
+  //get the assesment
   const response = await assessmentQuery(
     prompt,
     model,
@@ -33,14 +33,15 @@ export async function POST(req: any, res: NextApiResponse<Data>) {
     isSubjectDiscussed,
     selectedLanguage
   );
-  //get the assesment
+  console.log("ai assessment response:", response);
+
   // Remove punctuation marks
   const cleanStr =
     response?.replace(/[^\w\s]/gi, "") || "ai was unable to answer. Failed";
   // Split the string into words
   const words = cleanStr.split(" ");
   const lastWordGrade = words[words.length - 1];
-
+  console.log(lastWordGrade);
   const message: Message = isSubjectDiscussed
     ? {
         text: ["Ok", "Good"].includes(lastWordGrade)

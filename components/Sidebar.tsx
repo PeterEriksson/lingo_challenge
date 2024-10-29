@@ -36,11 +36,6 @@ function Sidebar() {
         </h2>
 
         <Image height={75} width={75} alt="lc-icon" src="/lc-white-icon.png" />
-        {/* {pathname == "/" ? (
-          <HomeIconSolid className="h-5 w-5  " />
-        ) : (
-          <HomeIcon className="h-5 w-5  " />
-        )} */}
       </Link>
 
       <div className="flex-1 mt-1.5">
@@ -50,7 +45,7 @@ function Sidebar() {
           </p>
         )}
 
-        <div className="flex flex-col space-y-3 my-2">
+        <div className="flex flex-col my-2">
           {loading && (
             <div className="text-center ">
               <LoadingSidebar />
