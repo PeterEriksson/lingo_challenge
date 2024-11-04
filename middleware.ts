@@ -8,10 +8,13 @@ export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // If no token exists and the user is trying to access a protected route, redirect to the home page.
-  if (!token && pathname !== "/") {
+
+  //outcommented for now...vercel site issue..
+
+  /* if (!token && pathname !== "/") {
     console.log("No token, redirecting to home");
     return NextResponse.redirect(new URL("/", req.url));
-  }
+  } */
 
   // Proceed with the request if authenticated or accessing home page.
   return NextResponse.next();
