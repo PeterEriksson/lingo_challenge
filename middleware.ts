@@ -16,7 +16,7 @@ export async function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/", req.url));
   } */
 
-  // Proceed with the request if authenticated or accessing home page.
+  // Proceed with the request if authenticated or accessing home page. (outcommented code above, debug issue...vercel..)
   return NextResponse.next();
 }
 
