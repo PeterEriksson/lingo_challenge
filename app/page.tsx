@@ -17,11 +17,10 @@ export default async function HomePage() {
         width={400}
         height={100}
       />
-      <h2 className="text-lg font-bold text-gray-500/90 -mt-8">
+      <h2 className="text-lg font-base text-gray-500/90 -mt-9">
         Exercises for{" "}
         <span className=" text-main ">intermediate language learners</span>
       </h2>
-      <h3 className=" font-bold text-gray-500/90">Can you beat them all?</h3>
 
       {session ? <LanguageSelect /> : <Login />}
 
