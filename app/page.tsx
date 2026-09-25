@@ -21,6 +21,7 @@ export default async function HomePage() {
         Exercises for{" "}
         <span className=" text-main ">intermediate language learners</span>
       </h2>
+      <h3>hello</h3>
 
       {session ? <LanguageSelect /> : <Login />}
 
